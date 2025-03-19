@@ -4,218 +4,251 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PicoBoyAdvanced</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.1/css/all.min.css">
     <style>
-        @font-face {
-            font-family: 'PixelFont';
-            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'PixelFont', monospace;
+        :root {
+            --neon-green: #00FF88;
+            --black: #0A0A0A;
+            --dark-grey: #373737;
+            --light-grey: #CCCCCC;
+            --white: #FFFFFF;
+            --electric-blue: #1E90FF;
+            --neon-pink: #FF1493;
+            --deep-purple: #800080;
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            margin: 0;
+            padding: 0;
+            background: var(--black);
+            color: var(--white);
+            font-family: 'Roboto Mono', monospace;
             overflow-x: hidden;
         }
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn 1s ease-out forwards;
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .logo {
-            font-size: 4rem;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 10px #00ff88;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .description {
-            font-size: 1.2rem;
-            color: #cccccc;
-            max-width: 600px;
-            margin: 0 auto 2rem;
-            line-height: 1.6;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: slideIn 1s ease-out 0.5s forwards;
-        }
-
-        .features {
+        .hero-section {
+            height: 100vh;
             display: flex;
+            align-items: center;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin: 4rem 0;
-            opacity: 0;
-            transform: translateX(-20px);
-            animation: slideIn 1s ease-out 1s forwards;
-        }
-
-        .feature {
-            background-color: #2a2a2a;
-            padding: 2rem;
-            border-radius: 10px;
-            min-width: 250px;
             text-align: center;
-            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, var(--dark-grey), var(--black));
         }
 
-        .feature:hover {
-            transform: translateY(-5px);
+        .hero-logo {
+            font-size: 3.5rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            animation: pulse 2s infinite;
+            .pixel-font;
         }
 
-        .component-section {
-            text-align: center;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: slideIn 1s ease-out 1.5s forwards;
+        .hero-tagline {
+            font-size: 1.5rem;
+            margin: 1rem 0;
+            color: var(--light-grey);
+            animation: fadeIn 1s ease-in;
+    }
+
+    .hero-button {
+        padding: 1rem 2rem;
+        background: var(--neon-green);
+        border: none;
+        color: var(--black);
+        font-family: 'Press Start 2P';
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    .hero-button:hover {
+        background: var(--electric-blue);
+        transform: scale(1.05);
+        text-shadow: 0 0 5px var(--neon-green);
+    }
+
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        padding: 2rem;
+    }
+
+    .feature-card {
+        background: var(--dark-grey);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+        color: var(--neon-green);
+        margin-bottom: 1rem;
+    }
+
+    .component-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 2rem;
+    }
+
+    .component-tile {
+        background: linear-gradient(45deg, var(--dark-grey), var(--black});
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .component-tile:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+    }
+
+    .github-section {
+        text-align: center;
+        padding: 4rem 2rem;
+        background: linear-gradient(45deg, var(--dark-grey), var(--black});
+    }
+
+    .github-button {
+        padding: 1rem 3rem;
+        background: transparent;
+        border: 2px solid var(--neon-green);
+        color: var(--neon-green);
+        cursor: pointer;
+        font-family: 'Press Start 2P';
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        animation: pulse 2s infinite;
+    }
+
+    .github-button:hover {
+        background: var(--neon-green);
+        color: var(--black);
+    }
+
+    footer {
+        padding: 2rem;
+        text-align: center;
+        background: var(--dark-grey);
+        border-top: 1px solid var(--neon-green);
+    }
+
+    .social-icons a {
+        color: var(--white);
+        margin: 0 0.5rem;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--neon-green);
+    }
+
+    @keyframes pulse {
+        0% { opacity: 0.8; }
+        50% { opacity: 1; }
+        100% { opacity: 0.8; }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+        .hero-logo {
+            font-size: 2.5rem;
         }
 
-        .component {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #373737;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
+        .features-grid {
+            grid-template-columns: 1fr;
         }
 
-        .component:hover {
-            background-color: #00ff88;
-            color: #1a1a1a;
-            transform: scale(1.05);
+        .component-grid {
+            grid-template-columns: 1fr;
         }
-
-        .github-section {
-            text-align: center;
-            opacity: 0;
-            transform: translateX(20px);
-            animation: slideIn 1s ease-out 1.5s forwards;
-        }
-
-        .github-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: #373737;
-            color: #ffffff;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            margin-top: 2rem;
-        }
-
-        .github-button:hover {
-            background-color: #00ff88;
-            color: #1a1a1a;
-            transform: scale(1.05);
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .logo {
-                font-size: 2.5rem;
-            }
-            
-            .description {
-                font-size: 1rem;
-            }
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="logo">PicoBoyAdvanced</h1>
-            <p class="description">
-                A modern, programmable game console with retro charm.<br>
-                Built for developers and gamers alike.
-            </p>
-        </header>
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-logo pixel-font">PicoBoyAdvanced</h1>
+            <p class="hero-tagline">A Modern Retro Console for Developers and Gamers</p>
+            <button class="hero-button">Explore Now</button>
+        </div>
+    </section>
 
-        <div class="features">
-            <div class="feature">
-                <h3>Powerful Hardware</h3>
-                <p>High-performance processor with optimized graphics capabilities</p>
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature-card">
+                <i class="fas fa-microchip feature-icon"></i>
+                <h2 class="pixel-font">Powerful Hardware</h2>
+                <p>Customizable and powerful hardware for developers</p>
             </div>
-            <div class="feature">
-                <h3>Customizable</h3>
-                <p>Modify both hardware and software to suit your needs</p>
+            <div class="feature-card">
+                <i class="fas fa-cogs feature-icon"></i>
+                <h2 class="pixel-font">Customizable</h2>
+                <p>Customize your console to suit your needs</p>
             </div>
-            <div class="feature">
-                <h3>Open Source</h3>
-                <p>Community-driven development and transparent progress</p>
+            <div class="feature-card">
+                <i class="fas fa-code feature-icon"></i>
+                <h2 class="pixel-font">Open Source</h2>
+                <p>Join our open source community</p>
             </div>
         </div>
+    </section>
 
-        <div class="component-section">
-            <h2>Components</h2>
-            <p>Learn more about the components that make up PicoBoyAdvanced</p>
-            <a href="#" class="component">RP2040 Microcontroller</a>
-            <a href="#" class="component">Custom PCB</a>
-            <a href="#" class="component">Black and White OLED Screen</a>
-            <a href="#" class="component">Buttons and Controls</a>
+    <section class="component-section">
+        <div class="component-grid">
+            <div class="component-tile">
+                <h3 class="pixel-font">RP2040 Microcontroller</h3>
+                <p>Powerful microcontroller for advanced programming</p>
+            </div>
+            <div class="component-tile">
+                <h3 class="pixel-font">Custom PCB</h3>
+                <p>Custom-designed PCB for optimal performance</p>
+            </div>
         </div>
+    </section>
 
-        <div class="github-section">
-            <h2>Get Involved</h2>
-            <p>Visit our GitHub repository to contribute and learn more</p>
-            <a href="https://github.com/Ethan-cmd123/PicoBoy-Advanced" class="github-button">View on GitHub</a>
+    <section class="github-section">
+        <h2 class="pixel-font">Join Our Community</h2>
+        <a href="#" class="github-button">View on GitHub</a>
+    </section>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
         </div>
-    </div>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.component-tile').forEach(t => t.addEventListener('click', function() {
+            alert('Component details clicked! Implement modal here.');
+        }));
+    </script>
 </body>
 </html>
