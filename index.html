@@ -10,25 +10,23 @@
         :root {
             --neon-green: #00FF88;
             --black: #0A0A0A;
-            --dark-grey: #373737;
-            --light-grey: #CCCCCC;
+            --dark-grey: #1A1A1A;
+            --light-grey: #F0F0F0;
             --white: #FFFFFF;
             --electric-blue: #1E90FF;
-            --neon-pink: #FF1493;
-            --deep-purple: #800080;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            margin: 0;
-            padding: 0;
             background: var(--black);
             color: var(--white);
             font-family: 'Roboto Mono', monospace;
             overflow-x: hidden;
-        }
-
-        .pixel-font {
-            font-family: 'Press Start 2P', cursive;
         }
 
         .container {
@@ -37,35 +35,124 @@
             padding: 0 20px;
         }
 
-        .hero-section {
+        .hero {
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center;
             position: relative;
             overflow: hidden;
             background: linear-gradient(45deg, var(--dark-grey), var(--black));
         }
 
-        .hero-logo {
-            font-size: 3.5rem;
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .pixel-font {
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        .hero-title {
+            font-size: 4rem;
             color: var(--neon-green);
-            text-shadow: 0 0 10px var(--neon-green);
-            animation: pulse 2s infinite;
-            .pixel-font;
+            margin-bottom: 2rem;
+            animation: titlePulse 2s infinite;
         }
 
         .hero-tagline {
             font-size: 1.5rem;
-            margin: 1rem 0;
             color: var(--light-grey);
-            animation: fadeIn 1s ease-in;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
         }
 
-        .hero-button {
+        .nav {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .nav-link {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        .features {
+            padding: 4rem 0;
+            background: linear-gradient(45deg, var(--dark-grey), var(--black));
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: rgba(10, 10, 10, 0.9);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .contact {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 5px;
+            color: var(--white);
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .submit-btn {
+            display: inline-block;
             padding: 1rem 2rem;
-            background: var(--neon-green);
+            background: linear-gradient(45deg, var(--neon-green), var(--electric-blue));
             border: none;
             color: var(--black);
             font-family: 'Press Start 2P';
@@ -76,125 +163,141 @@
             letter-spacing: 2px;
         }
 
-        .hero-button:hover {
-            background: var(--electric-blue);
+        .submit-btn:hover {
             transform: scale(1.05);
-            text-shadow: 0 0 5px var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
         }
 
-        .component-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            padding: 2rem;
-        }
-
-        .component-tile {
-            background: linear-gradient(45deg, var(--dark-grey), var(--black));
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-        }
-
-        .component-tile:hover {
-            transform: scale(1.02);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-        }
-
-        .component-image {
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 200px;
-            height: auto;
-            margin: 1rem auto;
-            border-radius: 5px;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
         }
 
-        footer {
-            padding: 2rem;
-            text-align: center;
-            background: var(--dark-grey);
-            border-top: 1px solid var(--neon-green);
-        }
-
-        .social-icons a {
-            color: var(--white);
-            margin: 0 0.5rem;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--neon-green);
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        @keyframes titlePulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            .hero-logo {
-                font-size: 2.5rem;
+            .hero-title {
+                font-size: 3rem;
             }
-
-            .component-grid {
+            
+            .features-grid {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <section class="hero-section">
-            <div class="hero-content">
-                <h1 class="hero-logo pixel-font">PicoBoyAdvanced</h1>
-                <p class="hero-tagline">A Modern Retro Console for Developers and Gamers</p>
-                <a href="https://github.com/Ethan-cmd123/PicoBoy-Advanced/wiki" class="hero-button">Explore Now</a>
-            </div>
-        </section>
+    <div class="particles"></div>
+    
+    <nav class="nav">
+        <a href="#home" class="nav-link">Home</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
 
-        <section class="component-section">
-            <div class="component-grid">
-                <div class="component-tile">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOci5_EcNpFXf8IuqzS-ZLutRp5C7-M4QAsw&s" alt="RP2040 Microcontroller" class="component-image">
-                    <h3 class="pixel-font">RP2040 Microcontroller</h3>
-                    <p>Powerful microcontroller for advanced programming</p>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="hero-title pixel-font">PicoBoyAdvanced</h1>
+            <p class="hero-tagline">Next Generation Retro Gaming Experience</p>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="pixel-font" style="color: var(--neon-green); text-align: center; margin-bottom: 2rem;">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-microchip feature-icon"></i>
+                    <h3 class="pixel-font">RP2040 Core</h3>
+                    <p>Advanced microcontroller with powerful processing capabilities</p>
                 </div>
-                <div class="component-tile">
-                    <img src="https://techiesms.com/wp-content/uploads/2022/11/oled.png" alt="Screen" class="component-image">
-                    <h3 class="pixel-font">Screen</h3>
-                    <p>High-resolution OLED display for crisp visuals</p>
+                <div class="feature-card">
+                    <i class="fas fa-display feature-icon"></i>
+                    <h3 class="pixel-font">OLED Display</h3>
+                    <p>High-resolution screen with vibrant colors</p>
                 </div>
-                <div class="component-tile">
-                    <img src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/c14add5875ae799cc22f6576077b8bb5/large.png" alt="Button" class="component-image">
-                    <h3 class="pixel-font">Button</h3>
-                    <p>Premium buttons for precise control</p>
+                <div class="feature-card">
+                    <i class="fas fa-gamepad feature-icon"></i>
+                    <h3 class="pixel-font">Precision Controls</h3>
+                    <p>Customizable buttons for optimal gaming experience</p>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <footer>
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="pixel-font" style="color: var(--neon-green); margin-bottom: 2rem;">Get in Touch</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" class="form-input" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-input" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea class="form-input" placeholder="Message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
             <div class="social-icons">
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="nav-link">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="nav-link">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
-        </footer>
-    </div>
+            <p style="margin-top: 1rem;">&copy; 2024 PicoBoyAdvanced. All rights reserved.</p>
+        </div>
+    </footer>
 
     <script>
-        document.querySelectorAll('.component-tile').forEach(t => t.addEventListener('click', function() {
-            alert('Component details clicked! Implement modal here.');
-        }));
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        document.querySelector('.contact-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const email = new Email({
+                from: formData.get('email'),
+                to: 'ethanza2010@gmail.com',
+                subject: 'New Message from Website',
+                body: formData.get('message')
+            });
+            email.send();
+            alert('Message sent successfully!');
+            e.target.reset();
+        });
     </script>
 </body>
 </html>
