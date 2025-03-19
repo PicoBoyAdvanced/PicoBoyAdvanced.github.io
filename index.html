@@ -87,6 +87,30 @@
             transform: translateY(-5px);
         }
 
+        .component-section {
+            text-align: center;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: slideIn 1s ease-out 1.5s forwards;
+        }
+
+        .component {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #373737;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            margin-top: 2rem;
+        }
+
+        .component:hover {
+            background-color: #00ff88;
+            color: #1a1a1a;
+            transform: scale(1.05);
+        }
+
         .github-section {
             text-align: center;
             opacity: 0;
@@ -176,6 +200,15 @@
                 <h3>Open Source</h3>
                 <p>Community-driven development and transparent progress</p>
             </div>
+        </div>
+
+        <div class="component-section">
+            <h2>Components</h2>
+            <p>Learn more about the components that make up PicoBoyAdvanced</p>
+            <a href="#" class="component">RP2040 Microcontroller</a>
+            <a href="#" class="component">Custom PCB</a>
+            <a href="#" class="component">Black and White OLED Screen</a>
+            <a href="#" class="component">Buttons and Controls</a>
         </div>
 
         <div class="github-section">
