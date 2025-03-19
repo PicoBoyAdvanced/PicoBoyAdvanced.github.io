@@ -4,324 +4,185 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PicoBoyAdvanced</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.1/css/all.min.css">
     <style>
-        :root {
-            --neon-green: #00FF88;
-            --black: #0A0A0A;
-            --dark-grey: #1A1A1A;
-            --light-grey: #F0F0F0;
-            --white: #FFFFFF;
-            --electric-blue: #1E90FF;
+        @font-face {
+            font-family: 'PixelFont';
+            src: url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'PixelFont', monospace;
         }
 
         body {
-            background: var(--black);
-            color: var(--white);
-            font-family: 'Roboto Mono', monospace;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             overflow-x: hidden;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
         }
 
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        header {
             text-align: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(45deg, var(--dark-grey), var(--black));
+            margin-bottom: 4rem;
         }
 
-        .hero-content {
-            z-index: 1;
-        }
-
-        .pixel-font {
-            font-family: 'Press Start 2P', cursive;
-        }
-
-        .hero-title {
+        .logo {
             font-size: 4rem;
-            color: var(--neon-green);
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 4px;
             margin-bottom: 2rem;
-            animation: titlePulse 2s infinite;
+            text-shadow: 0 0 10px #00ff88;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .hero-tagline {
-            font-size: 1.5rem;
-            color: var(--light-grey);
-            margin-bottom: 2rem;
-        }
-
-        .nav {
-            position: fixed;
-            top: 2rem;
-            right: 2rem;
-            display: flex;
-            gap: 1rem;
-            z-index: 2;
-        }
-
-        .nav-link {
-            color: var(--white);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .nav-link:hover {
-            color: var(--neon-green);
-            transform: translateY(-2px);
+        .description {
+            font-size: 1.2rem;
+            color: #cccccc;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: slideIn 1s ease-out 0.5s forwards;
         }
 
         .features {
-            padding: 4rem 0;
-            background: linear-gradient(45deg, var(--dark-grey), var(--black));
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateX(-20px);
+            animation: slideIn 1s ease-out 1s forwards;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+        .feature {
+            background-color: #2a2a2a;
+            padding: 2rem;
+            border-radius: 10px;
+            min-width: 250px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+
+        .github-section {
+            text-align: center;
+            opacity: 0;
+            transform: translateX(20px);
+            animation: slideIn 1s ease-out 1.5s forwards;
+        }
+
+        .github-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #373737;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
             margin-top: 2rem;
         }
 
-        .feature-card {
-            background: rgba(10, 10, 10, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 136, 0.2));
-            pointer-events: none;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .feature-icon {
-            font-size: 2rem;
-            color: var(--neon-green);
-            margin-bottom: 1rem;
-        }
-
-        .contact {
-            padding: 4rem 0;
-            text-align: center;
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(10, 10, 10, 0.9);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-input {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            border-radius: 5px;
-            color: var(--white);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-input:focus {
-            outline: none;
-            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
-        }
-
-        .submit-btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(45deg, var(--neon-green), var(--electric-blue));
-            border: none;
-            color: var(--black);
-            font-family: 'Press Start 2P';
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn:hover {
+        .github-button:hover {
+            background-color: #00ff88;
+            color: #1a1a1a;
             transform: scale(1.05);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
         }
 
-        .console-info {
-            padding: 4rem 0;
-            background: linear-gradient(45deg, var(--dark-grey), var(--black));
-            text-align: center;
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .console-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
         }
 
-        .console-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        }
-
-        .console-description {
-            padding: 2rem;
-            background: rgba(10, 10, 10, 0.9);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .console-description h2 {
-            color: var(--neon-green);
-            margin-bottom: 1rem;
-        }
-
-        .console-description p {
-            line-height: 1.6;
-            color: var(--light-grey);
-        }
-
-        @keyframes titlePulse {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         @media (max-width: 768px) {
-            .console-section {
-                grid-template-columns: 1fr;
+            .logo {
+                font-size: 2.5rem;
             }
             
-            .hero-title {
-                font-size: 3rem;
+            .description {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <nav class="nav">
-            <a href="#home" class="nav-link">Home</a>
-            <a href="#console" class="nav-link">Console</a>
-            <a href="#contact" class="nav-link">Contact</a>
-        </nav>
+        <header>
+            <h1 class="logo">PicoBoyAdvanced</h1>
+            <p class="description">
+                A modern, programmable game console with retro charm.<br>
+                Built for developers and gamers alike.
+            </p>
+        </header>
 
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1 class="hero-title pixel-font">PicoBoyAdvanced</h1>
-                <p class="hero-tagline">A Modern Retro Console for Developers and Gamers</p>
+        <div class="features">
+            <div class="feature">
+                <h3>Powerful Hardware</h3>
+                <p>High-performance processor with optimized graphics capabilities</p>
             </div>
-        </section>
-
-        <section class="console-info" id="console">
-            <div class="console-section">
-                <img src="https://example.com/console-image.jpg" alt="PicoBoyAdvanced Console" class="console-image">
-                <div class="console-description">
-                    <h2 class="pixel-font">Meet the PicoBoyAdvanced Console</h2>
-                    <p>The PicoBoyAdvanced is a cutting-edge retro gaming console built on the RP2040 microcontroller. Featuring a high-resolution OLED display and precision controls, it's designed for both developers and gamers.</p>
-                    <br>
-                    <p>Key Features:</p>
-                    <ul style="color: var(--light-grey);">
-                        <li>RP2040 Microcontroller</li>
-                        <li>High-resolution OLED Display</li>
-                        <li>Premium Gaming Controls</li>
-                        <li>Customizable Firmware</li>
-                        <li>Modern Audio System</li>
-                    </ul>
-                </div>
+            <div class="feature">
+                <h3>Customizable</h3>
+                <p>Modify both hardware and software to suit your needs</p>
             </div>
-        </section>
-
-        <section class="contact" id="contact">
-            <h2 class="pixel-font" style="color: var(--neon-green); margin-bottom: 2rem;">Get in Touch</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" class="form-input" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" class="form-input" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea class="form-input" placeholder="Message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn" onclick="window.location.href='mailto:ethanza2010@gmail.com?subject=PicoBoyAdvanced%20Inquiry&body=Hello%20Ethan!%0D%0APlease%20find%20my%20message%20below:%0D%0A%0D%0A'">
-                    Send Message
-                </button>
-            </form>
-        </section>
-
-        <footer>
-            <div class="container">
-                <div class="social-icons">
-                    <a href="#" class="nav-link">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" class="nav-link">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </div>
-                <p>&copy; 2024 PicoBoyAdvanced. All rights reserved.</p>
+            <div class="feature">
+                <h3>Open Source</h3>
+                <p>Community-driven development and transparent progress</p>
             </div>
-        </footer>
+        </div>
+
+        <div class="github-section">
+            <h2>Get Involved</h2>
+            <p>Visit our GitHub repository to contribute and learn more</p>
+            <a href="https://github.com/Ethan-cmd123/PicoBoy-Advanced" class="github-button">View on GitHub</a>
+        </div>
     </div>
-
-    <script>
-        // Add any additional JavaScript functionality here
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const href = this.getAttribute('href');
-                document.querySelector(href).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
