@@ -31,6 +31,12 @@
             font-family: 'Press Start 2P', cursive;
         }
 
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
         .hero-section {
             height: 100vh;
             display: flex;
@@ -55,195 +61,135 @@
             margin: 1rem 0;
             color: var(--light-grey);
             animation: fadeIn 1s ease-in;
-    }
-
-    .hero-button {
-        padding: 1rem 2rem;
-        background: var(--neon-green);
-        border: none;
-        color: var(--black);
-        font-family: 'Press Start 2P';
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-    }
-
-    .hero-button:hover {
-        background: var(--electric-blue);
-        transform: scale(1.05);
-        text-shadow: 0 0 5px var(--neon-green);
-    }
-
-    .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 2rem;
-        padding: 2rem;
-    }
-
-    .feature-card {
-        background: var(--dark-grey);
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-        transition: all 0.3s ease;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-    }
-
-    .feature-icon {
-        font-size: 2.5rem;
-        color: var(--neon-green);
-        margin-bottom: 1rem;
-    }
-
-    .component-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1rem;
-        padding: 2rem;
-    }
-
-    .component-tile {
-        background: linear-gradient(45deg, var(--dark-grey), var(--black});
-        padding: 2rem;
-        border-radius: 10px;
-        box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .component-tile:hover {
-        transform: scale(1.02);
-        box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
-    }
-
-    .github-section {
-        text-align: center;
-        padding: 4rem 2rem;
-        background: linear-gradient(45deg, var(--dark-grey), var(--black});
-    }
-
-    .github-button {
-        padding: 1rem 3rem;
-        background: transparent;
-        border: 2px solid var(--neon-green);
-        color: var(--neon-green);
-        cursor: pointer;
-        font-family: 'Press Start 2P';
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        animation: pulse 2s infinite;
-    }
-
-    .github-button:hover {
-        background: var(--neon-green);
-        color: var(--black);
-    }
-
-    footer {
-        padding: 2rem;
-        text-align: center;
-        background: var(--dark-grey);
-        border-top: 1px solid var(--neon-green);
-    }
-
-    .social-icons a {
-        color: var(--white);
-        margin: 0 0.5rem;
-        font-size: 1.5rem;
-        transition: all 0.3s ease;
-    }
-
-    .social-icons a:hover {
-        color: var(--neon-green);
-    }
-
-    @keyframes pulse {
-        0% { opacity: 0.8; }
-        50% { opacity: 1; }
-        100% { opacity: 0.8; }
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(20px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    @media (max-width: 768px) {
-        .hero-logo {
-            font-size: 2.5rem;
         }
 
-        .features-grid {
-            grid-template-columns: 1fr;
+        .hero-button {
+            padding: 1rem 2rem;
+            background: var(--neon-green);
+            border: none;
+            color: var(--black);
+            font-family: 'Press Start 2P';
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero-button:hover {
+            background: var(--electric-blue);
+            transform: scale(1.05);
+            text-shadow: 0 0 5px var(--neon-green);
         }
 
         .component-grid {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
         }
-    }
-</style>
+
+        .component-tile {
+            background: linear-gradient(45deg, var(--dark-grey), var(--black));
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .component-tile:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.3);
+        }
+
+        .component-image {
+            width: 100%;
+            max-width: 200px;
+            height: auto;
+            margin: 1rem auto;
+            border-radius: 5px;
+        }
+
+        footer {
+            padding: 2rem;
+            text-align: center;
+            background: var(--dark-grey);
+            border-top: 1px solid var(--neon-green);
+        }
+
+        .social-icons a {
+            color: var(--white);
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: var(--neon-green);
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .hero-logo {
+                font-size: 2.5rem;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <section class="hero-section">
-        <div class="hero-content">
-            <h1 class="hero-logo pixel-font">PicoBoyAdvanced</h1>
-            <p class="hero-tagline">A Modern Retro Console for Developers and Gamers</p>
-            <button class="hero-button">Explore Now</button>
-        </div>
-    </section>
+    <div class="container">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-logo pixel-font">PicoBoyAdvanced</h1>
+                <p class="hero-tagline">A Modern Retro Console for Developers and Gamers</p>
+                <a href="https://github.com/Ethan-cmd123/PicoBoy-Advanced/wiki" class="hero-button">Explore Now</a>
+            </div>
+        </section>
 
-    <section class="features-section">
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-microchip feature-icon"></i>
-                <h2 class="pixel-font">Powerful Hardware</h2>
-                <p>Customizable and powerful hardware for developers</p>
+        <section class="component-section">
+            <div class="component-grid">
+                <div class="component-tile">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOci5_EcNpFXf8IuqzS-ZLutRp5C7-M4QAsw&s" alt="RP2040 Microcontroller" class="component-image">
+                    <h3 class="pixel-font">RP2040 Microcontroller</h3>
+                    <p>Powerful microcontroller for advanced programming</p>
+                </div>
+                <div class="component-tile">
+                    <img src="https://techiesms.com/wp-content/uploads/2022/11/oled.png" alt="Screen" class="component-image">
+                    <h3 class="pixel-font">Screen</h3>
+                    <p>High-resolution OLED display for crisp visuals</p>
+                </div>
+                <div class="component-tile">
+                    <img src="https://d2t1xqejof9utc.cloudfront.net/screenshots/pics/c14add5875ae799cc22f6576077b8bb5/large.png" alt="Button" class="component-image">
+                    <h3 class="pixel-font">Button</h3>
+                    <p>Premium buttons for precise control</p>
+                </div>
             </div>
-            <div class="feature-card">
-                <i class="fas fa-cogs feature-icon"></i>
-                <h2 class="pixel-font">Customizable</h2>
-                <p>Customize your console to suit your needs</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-code feature-icon"></i>
-                <h2 class="pixel-font">Open Source</h2>
-                <p>Join our open source community</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="component-section">
-        <div class="component-grid">
-            <div class="component-tile">
-                <h3 class="pixel-font">RP2040 Microcontroller</h3>
-                <p>Powerful microcontroller for advanced programming</p>
+        <footer>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
             </div>
-            <div class="component-tile">
-                <h3 class="pixel-font">Custom PCB</h3>
-                <p>Custom-designed PCB for optimal performance</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="github-section">
-        <h2 class="pixel-font">Join Our Community</h2>
-        <a href="#" class="github-button">View on GitHub</a>
-    </section>
-
-    <footer>
-        <div class="social-icons">
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
     <script>
         document.querySelectorAll('.component-tile').forEach(t => t.addEventListener('click', function() {
