@@ -40,6 +40,25 @@
         header {
             text-align: center;
             margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .console-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            width: 80%;
+            max-width: 500px;
+            object-fit: cover;
+            filter: blur(5px) sepia(0.2);
+            mix-blend-mode: multiply;
+            transition: transform 0.3s ease;
+        }
+
+        .console-image:hover {
+            transform: translate(-50%, -50%) scale(1.05);
         }
 
         .logo {
@@ -205,6 +224,7 @@
 <body>
     <div class="container">
         <header>
+            <img src="console.png" alt="Console Image" class="console-image">
             <h1 class="logo"><span>PicoBoyAdvanced</span></h1>
             <p class="description">
                 A modern, programmable game console with retro charm.<br>
